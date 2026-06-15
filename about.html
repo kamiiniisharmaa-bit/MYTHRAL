@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MYTHRAL · The Atelier Story</title>
+  <!-- same fonts as MYTHRAL ecosystem: Manrope + Cormorant Garamond -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #faf7f2;
+      color: #1a1a2c;
+      line-height: 1.55;
+    }
+
+    /* MYTHRAL unique color palette */
+    :root {
+      --mythral-deep: #0f2c2f;
+      --mythral-terra: #c45c4a;
+      --mythral-sand: #e8dfd3;
+      --mythral-gold: #b88b4a;
+      --mythral-card: #ffffff;
+      --mythral-mist: #f2ede5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 2px solid rgba(15, 44, 47, 0.08);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--mythral-deep) 0%, var(--mythral-terra) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      background: none;
+      color: var(--mythral-terra);
+      -webkit-background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-icons i {
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+    }
+
+    .nav-icons i:hover {
+      color: var(--mythral-terra);
+    }
+
+    /* about hero section */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 64px 0 48px;
+    }
+
+    .about-hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--mythral-deep);
+      line-height: 1.2;
+      margin-bottom: 24px;
+    }
+
+    .about-hero-content .tagline {
+      font-size: 1.1rem;
+      color: var(--mythral-terra);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+
+    .about-hero-content p {
+      font-size: 1.05rem;
+      color: #4a4a5a;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .about-hero-image {
+      background: var(--mythral-sand);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 28px 36px -16px rgba(0, 0, 0, 0.12);
+      aspect-ratio: 4 / 3;
+    }
+
+    .about-hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* story timeline / philosophy */
+    .philosophy {
+      background: var(--mythral-mist);
+      border-radius: 40px;
+      padding: 64px 56px;
+      margin: 48px 0 64px;
+      text-align: center;
+    }
+
+    .philosophy h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      color: var(--mythral-deep);
+      margin-bottom: 28px;
+    }
+
+    .philosophy-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+
+    .pillar {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+    }
+
+    .pillar i {
+      font-size: 2.5rem;
+      color: var(--mythral-gold);
+      margin-bottom: 16px;
+    }
+
+    .pillar h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--mythral-deep);
+    }
+
+    .pillar p {
+      font-size: 0.9rem;
+      color: #5a5a6e;
+    }
+
+    /* meet the makers / team section */
+    .team-section {
+      margin: 64px 0;
+    }
+
+    .team-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      color: var(--mythral-deep);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .team-sub {
+      text-align: center;
+      color: #6a6a7e;
+      margin-bottom: 48px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+    }
+
+    .team-card {
+      background: var(--mythral-card);
+      border-radius: 28px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(15, 44, 47, 0.06);
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -10px rgba(15, 44, 47, 0.1);
+    }
+
+    .team-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+
+    .team-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .team-card:hover .team-img img {
+      transform: scale(1.03);
+    }
+
+    .team-info {
+      padding: 24px 20px 28px;
+    }
+
+    .team-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--mythral-deep);
+    }
+
+    .team-role {
+      color: var(--mythral-terra);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      margin: 6px 0 12px;
+      font-weight: 500;
+    }
+
+    .team-bio {
+      font-size: 0.85rem;
+      color: #5a5a6e;
+      line-height: 1.5;
+    }
+
+    /* artisan collaboration spotlight */
+    .artisan-spotlight {
+      background: linear-gradient(135deg, #f3ede5 0%, #e5dacf 100%);
+      border-radius: 40px;
+      padding: 56px 48px;
+      margin: 56px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .spotlight-text {
+      flex: 1.2;
+    }
+
+    .spotlight-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--mythral-deep);
+      margin-bottom: 20px;
+    }
+
+    .spotlight-text p {
+      margin-bottom: 20px;
+      color: #3d3d4a;
+    }
+
+    .spotlight-text .quote {
+      font-style: italic;
+      border-left: 3px solid var(--mythral-gold);
+      padding-left: 24px;
+      margin: 28px 0;
+      font-size: 1rem;
+      color: var(--mythral-terra);
+    }
+
+    .spotlight-image {
+      flex: 0.9;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 28px -12px rgba(0,0,0,0.15);
+    }
+
+    .spotlight-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* stats / milestones */
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 32px;
+      background: var(--mythral-card);
+      border-radius: 40px;
+      padding: 48px 40px;
+      margin: 48px 0;
+      border: 1px solid rgba(15, 44, 47, 0.06);
+    }
+
+    .stat-item {
+      text-align: center;
+      flex: 1;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--mythral-terra);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #6a6a7e;
+      margin-top: 8px;
+    }
+
+    /* back navigation */
+    .back-nav {
+      text-align: center;
+      margin: 40px 0 60px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.8px solid var(--mythral-deep);
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--mythral-deep);
+      color: white;
+      border-color: var(--mythral-deep);
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid rgba(15, 44, 47, 0.12);
+      padding: 52px 0 36px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col p {
+      color: #5c5c6e;
+      max-width: 260px;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--mythral-deep);
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #5c5c6e;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .social-links i {
+      font-size: 1.25rem;
+      margin-right: 20px;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social-links i:hover {
+      color: var(--mythral-gold);
+    }
+
+    @media (max-width: 850px) {
+      .container {
+        padding: 0 24px;
+      }
+      .about-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 32px;
+      }
+      .philosophy {
+        padding: 40px 24px;
+      }
+      .artisan-spotlight {
+        flex-direction: column;
+        text-align: center;
+      }
+      .spotlight-text .quote {
+        text-align: left;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .stats {
+        flex-direction: column;
+        gap: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- consistent header with MYTHRAL branding -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">MYTHRAL<span> .atelier</span></a>
+      <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-bag-shopping"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- about hero section -->
+  <div class="about-hero">
+    <div class="about-hero-content">
+      <div class="tagline">✦ Since 2019 ✦</div>
+      <h1>The Atelier of <br>Forgotten Tales</h1>
+      <p>MYTHRAL was born from a quiet rebellion against mass production — a sanctuary for those who seek objects with soul, story, and slow intention. We are curators, nomads, and guardians of craft traditions that whisper across generations.</p>
+      <p>Our name draws from an ancient lexicon, meaning "eternal radiance" — a quality we believe lives inside every hand-shaped vessel, every handwoven textile, every talisman that finds its way to you.</p>
+    </div>
+    <div class="about-hero-image">
+      <img src="https://picsum.photos/id/108/900/650" alt="MYTHRAL atelier studio with ceramics and natural light">
+    </div>
+  </div>
+
+  <!-- philosophy pillars -->
+  <div class="philosophy">
+    <h2>✦ The Three Vows ✦</h2>
+    <div class="philosophy-grid">
+      <div class="pillar">
+        <i class="fa-regular fa-hand-sparkles"></i>
+        <h3>Hand-Honored</h3>
+        <p>Every artifact is made by human hands — no assembly lines, only artisan-led workshops where skill is passed through blood and apprenticeship.</p>
+      </div>
+      <div class="pillar">
+        <i class="fa-regular fa-leaf"></i>
+        <h3>Earth-Conscious</h3>
+        <p>We source natural, recycled, or upcycled materials. Our packaging is plastic-free, and we offset carbon for every shipment.</p>
+      </div>
+      <div class="pillar">
+        <i class="fa-regular fa-moon"></i>
+        <h3>Myth-Kept</h3>
+        <p>Each piece arrives with a story card — the legend behind its creation, the maker’s name, and a ritual to welcome it home.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- meet the guardians (team) -->
+  <div class="team-section">
+    <h2>Keepers of the Emporium</h2>
+    <div class="team-sub">The coven that curates, crafts, and cares</div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://picsum.photos/id/64/400/400" alt="Anya Sharma - Founder">
+        </div>
+        <div class="team-info">
+          <h3>Anya Sharma</h3>
+          <div class="team-role">Founder & Mythkeeper</div>
+          <div class="team-bio">Former ethnographer turned curator. Anya travels to remote craft clusters to unearth forgotten techniques and bring them into the light.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://picsum.photos/id/91/400/400" alt="Rohan Mehta">
+        </div>
+        <div class="team-info">
+          <h3>Rohan Mehta</h3>
+          <div class="team-role">Artisan Liaison</div>
+          <div class="team-bio">With a decade in ethical trade, Rohan ensures fair wages, transparent partnerships, and that every maker’s voice is honored.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://picsum.photos/id/59/400/400" alt="Mira Devi">
+        </div>
+        <div class="team-info">
+          <h3>Mira Devi</h3>
+          <div class="team-role">Master Weaver</div>
+          <div class="team-bio">Seventh-generation weaver from Kutch. Mira’s textile alchemy transforms raw threads into contemporary heirlooms.</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <img src="https://picsum.photos/id/65/400/400" alt="Samir Thapa">
+        </div>
+        <div class="team-info">
+          <h3>Samir Thapa</h3>
+          <div class="team-role">Ritual Designer</div>
+          <div class="team-bio">Samir blends anthropology and design to create the spiritual narratives — how to care for, charge, and live with each artifact.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- artisan spotlight - unique collaboration story -->
+  <div class="artisan-spotlight">
+    <div class="spotlight-text">
+      <h2>⌇ The Potter’s Covenant</h2>
+      <p>In the misty highlands of Himachal, we met <strong>Fatima Begum</strong> — a ceramicist who fires her clay in ancient pit kilns using wild clays gathered from seasonal riverbeds. Her hands remember what machines cannot replicate.</p>
+      <div class="quote">
+        <i class="fa-solid fa-quote-left" style="margin-right: 8px; color: var(--mythral-gold);"></i> 
+        Clay speaks if you listen. I shape it, but the fire decides the final poem.
+      </div>
+      <p>Fatima’s <strong>“Whispering Urn”</strong> and <strong>“Moonphase Vessel”</strong> are part of our permanent archive. For every piece sold, MYTHRAL funds a week of clean drinking water in her village. This is not charity — it is reciprocity.</p>
+    </div>
+    <div class="spotlight-image">
+      <img src="https://picsum.photos/id/36/550/450" alt="Artisan potter Fatima at work in her studio">
+    </div>
+  </div>
+
+  <!-- impact stats -->
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number">47+</div>
+      <div class="stat-label">Artisan partners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">12</div>
+      <div class="stat-label">Countries sourced from</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Carbon-neutral shipping</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">₹34L+</div>
+      <div class="stat-label">Paid to artisan communities (2025)</div>
+    </div>
+  </div>
+
+  <!-- back to emporium navigation -->
+  <div class="back-nav">
+    <a href="#" class="btn-outline"><i class="fa-regular fa-arrow-left"></i> Return to the Emporium</a>
+  </div>
+
+  <!-- footer (consistent brand identity) -->
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="#" class="logo" style="font-size: 1.7rem;">MYTHRAL</a>
+      <p>Objects that whisper legends. Curated for the nomadic spirit.</p>
+      <div class="social-links" style="margin-top: 18px;">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-pinterest"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-flickr"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </footer>
+</div>
+
+<script>
+  // interactive demo: return to shop alert + console greeting
+  const backToShop = document.querySelector('.btn-outline');
+  if (backToShop) {
+    backToShop.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("✨ You're being guided back to the MYTHRAL Emporium. (In the live site, this would lead to the homepage.)");
+    });
+  }
+  console.log("MYTHRAL About Us — stories of artisans and guardians loaded.");
+</script>
+</body>
+</html>

@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MYTHRAL · The Privacy Grimoire</title>
+  <!-- same fonts as MYTHRAL ecosystem: Manrope + Cormorant Garamond -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #faf7f2;
+      color: #1a1a2c;
+      line-height: 1.55;
+    }
+
+    /* identical color variables from MYTHRAL homepage & terms */
+    :root {
+      --mythral-deep: #0f2c2f;
+      --mythral-terra: #c45c4a;
+      --mythral-sand: #e8dfd3;
+      --mythral-gold: #b88b4a;
+      --mythral-card: #ffffff;
+      --mythral-mist: #f2ede5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header / navbar (consistent branding) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 2px solid rgba(15, 44, 47, 0.08);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--mythral-deep) 0%, var(--mythral-terra) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      background: none;
+      color: var(--mythral-terra);
+      -webkit-background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-icons i {
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+    }
+
+    .nav-icons i:hover {
+      color: var(--mythral-terra);
+    }
+
+    /* privacy header */
+    .privacy-header {
+      margin: 48px 0 32px 0;
+      text-align: center;
+    }
+
+    .privacy-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--mythral-deep);
+      letter-spacing: -0.01em;
+    }
+
+    .privacy-header p {
+      color: #5c5c6e;
+      margin-top: 12px;
+      font-size: 0.95rem;
+    }
+
+    .effective-badge {
+      background: var(--mythral-mist);
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-top: 20px;
+      color: var(--mythral-terra);
+    }
+
+    /* main privacy card */
+    .privacy-card {
+      background: var(--mythral-card);
+      border-radius: 32px;
+      padding: 48px 56px;
+      margin: 32px 0 64px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(15, 44, 47, 0.06);
+    }
+
+    .privacy-section {
+      margin-bottom: 42px;
+    }
+
+    .privacy-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .privacy-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--mythral-deep);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .privacy-section h2 i {
+      color: var(--mythral-gold);
+      font-size: 1.5rem;
+    }
+
+    .privacy-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 12px 0;
+      color: var(--mythral-terra);
+    }
+
+    .privacy-section p {
+      margin-bottom: 16px;
+      color: #2d2d3a;
+      line-height: 1.65;
+    }
+
+    .privacy-section ul, .privacy-section ol {
+      margin: 12px 0 20px 28px;
+      color: #2d2d3a;
+    }
+
+    .privacy-section li {
+      margin-bottom: 8px;
+    }
+
+    .highlight-box {
+      background: rgba(196, 92, 74, 0.06);
+      padding: 20px 26px;
+      border-radius: 24px;
+      border-left: 4px solid var(--mythral-terra);
+      margin: 28px 0;
+    }
+
+    .data-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .data-card {
+      background: var(--mythral-mist);
+      flex: 1;
+      min-width: 180px;
+      padding: 16px 18px;
+      border-radius: 20px;
+    }
+
+    .data-card i {
+      font-size: 1.6rem;
+      color: var(--mythral-gold);
+      margin-bottom: 10px;
+    }
+
+    .data-card h4 {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--mythral-deep);
+    }
+
+    .privacy-section a {
+      color: var(--mythral-terra);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed var(--mythral-gold);
+    }
+
+    .privacy-section a:hover {
+      color: var(--mythral-deep);
+      border-bottom: 1px solid var(--mythral-terra);
+    }
+
+    /* back navigation */
+    .back-nav {
+      text-align: center;
+      margin: 20px 0 60px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.8px solid var(--mythral-deep);
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--mythral-deep);
+      color: white;
+      border-color: var(--mythral-deep);
+    }
+
+    /* footer matching MYTHRAL style */
+    .footer {
+      border-top: 1px solid rgba(15, 44, 47, 0.12);
+      padding: 52px 0 36px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col p {
+      color: #5c5c6e;
+      max-width: 260px;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--mythral-deep);
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #5c5c6e;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .social-links i {
+      font-size: 1.25rem;
+      margin-right: 20px;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social-links i:hover {
+      color: var(--mythral-gold);
+    }
+
+    @media (max-width: 750px) {
+      .container {
+        padding: 0 24px;
+      }
+      .privacy-card {
+        padding: 32px 24px;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .privacy-header h1 {
+        font-size: 2.3rem;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 28px;
+      }
+      .data-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- consistent header with MYTHRAL unique identity -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">MYTHRAL<span> .atelier</span></a>
+      <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-bag-shopping"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- privacy policy title area -->
+  <div class="privacy-header">
+    <h1>The Privacy Grimoire</h1>
+    <p>How we honor, guard, and respect your celestial data</p>
+    <div class="effective-badge">
+      <i class="fa-regular fa-eye" style="margin-right: 6px;"></i> Effective: June 12, 2026 · Last revised: June 12, 2026
+    </div>
+  </div>
+
+  <!-- main privacy content card -->
+  <div class="privacy-card">
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-feather"></i> 1. A Sacred Trust</h2>
+      <p>At MYTHRAL ("we", "us", "the Emporium"), your privacy is not just a legal obligation — it is a sacred trust. This Privacy Grimoire explains what information we gather when you browse our artifacts, create an account, or make a purchase, and how we protect that information. By using our services, you entrust us with your data; we promise to treat it with the same reverence we give to handwoven heirlooms.</p>
+      <div class="highlight-box">
+        <i class="fa-regular fa-hand-sparkles" style="margin-right: 10px; color: var(--mythral-terra);"></i> 
+        <strong>Our core promise:</strong> We never sell your personal information. Ever. Your data is used only to fulfill orders, improve your experience, and send you occasional mythic dispatches (only if you opt in).
+      </div>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-database"></i> 2. What We Gather</h2>
+      <p>Depending on how you interact with MYTHRAL, we may collect the following categories of information:</p>
+      <div class="data-grid">
+        <div class="data-card">
+          <i class="fa-regular fa-user"></i>
+          <h4>Identity Data</h4>
+          <p>Name, billing/shipping address, email, phone number.</p>
+        </div>
+        <div class="data-card">
+          <i class="fa-regular fa-credit-card"></i>
+          <h4>Transaction Data</h4>
+          <p>Order history, payment details (processed via secure gateways).</p>
+        </div>
+        <div class="data-card">
+          <i class="fa-regular fa-chart-line"></i>
+          <h4>Technical Data</h4>
+          <p>IP address, browser type, device identifiers, cookies.</p>
+        </div>
+        <div class="data-card">
+          <i class="fa-regular fa-envelope"></i>
+          <h4>Communication Data</h4>
+          <p>Newsletter preferences, support inquiries, feedback.</p>
+        </div>
+      </div>
+      <p>We never intentionally collect sensitive data (health, biometric, political beliefs) unless you explicitly volunteer it in a customer service message.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-cookie-bite"></i> 3. Cookies & Digital Sigils</h2>
+      <p>Like most emporiums, we use cookies and similar tracking technologies to remember your cart, analyze site traffic, and personalize your journey. You can control cookie preferences through your browser settings, but disabling them may affect functionality (e.g., your basket might forget its treasures).</p>
+      <h3>Types of cookies we use:</h3>
+      <ul>
+        <li><strong>Essential cookies:</strong> Required for checkout, security, and account login.</li>
+        <li><strong>Analytics cookies:</strong> Help us understand which collections captivate our visitors (via anonymized data).</li>
+        <li><strong>Preference cookies:</strong> Remember your language and region.</li>
+      </ul>
+      <p>Third-party services (like payment processors or shipping carriers) may place their own cookies — please review their policies separately.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-hand-holding-heart"></i> 4. How We Use Your Information</h2>
+      <p>Every piece of data we collect serves a specific, transparent purpose:</p>
+      <ul>
+        <li><strong>Fulfillment:</strong> Process payments, pack and ship artifacts, provide order updates.</li>
+        <li><strong>Customer care:</strong> Answer your questions, resolve issues, process returns.</li>
+        <li><strong>Improvement:</strong> Analyze trends to curate better collections and enhance site performance.</li>
+        <li><strong>Marketing (only with consent):</strong> Send you newsletter, early access to lunar drops, and artisan stories. You can unsubscribe anytime via a single click.</li>
+        <li><strong>Legal compliance:</strong> Detect fraud, comply with tax laws, or respond to lawful requests.</li>
+      </ul>
+      <div class="highlight-box">
+        <i class="fa-regular fa-bell"></i> <strong>Your choice matters:</strong> You can opt out of marketing emails at any time using the "unsubscribe" link in our emails or by contacting rites@mythral.com.
+      </div>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-share-from-square"></i> 5. When We Share Data (Limited & Ethical)</h2>
+      <p>We do not sell or rent your personal information. However, we may share your data with trusted partners strictly necessary to operate MYTHRAL:</p>
+      <ul>
+        <li><strong>Payment processors</strong> (Stripe, PayPal) — they handle your payment details securely and do not retain them longer than needed.</li>
+        <li><strong>Shipping carriers</strong> (DHL, FedEx, local couriers) — to deliver your artifacts.</li>
+        <li><strong>Analytics providers</strong> (such as privacy-respecting tools) — to understand site usage without identifying individuals.</li>
+        <li><strong>Legal authorities</strong> — only if required by law or to protect our rights, property, or safety.</li>
+      </ul>
+      <p>All partners are contractually bound to keep your data confidential and use it only for the specified services.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-lock"></i> 6. Data Security & Retention</h2>
+      <p>We implement industry-standard safeguards: SSL encryption, restricted access to personal data, regular security audits. While no system is 100% invulnerable, we continuously update our protections.</p>
+      <p><strong>Retention:</strong> We keep your personal data only as long as necessary — typically for 5 years after your last interaction (for tax and warranty purposes), after which it is anonymized or deleted. You may request deletion earlier (see Section 8).</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-child"></i> 7. Children's Privacy</h2>
+      <p>MYTHRAL's artifacts are designed for adults and collectors over the age of 18. We do not knowingly collect information from children under 16. If you believe a minor has provided us with personal data, please contact us so we can delete it promptly.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-user-astronaut"></i> 8. Your Rights (The Invocation of Control)</h2>
+      <p>Depending on your location (especially if you reside in the EEA, UK, or California), you may have the following rights regarding your personal data:</p>
+      <ul>
+        <li><strong>Access:</strong> Receive a copy of the data we hold about you.</li>
+        <li><strong>Rectification:</strong> Correct inaccurate or incomplete information.</li>
+        <li><strong>Erasure ("Right to be Forgotten"):</strong> Request deletion of your data, subject to legal obligations (e.g., tax records).</li>
+        <li><strong>Restriction:</strong> Limit how we use your data.</li>
+        <li><strong>Portability:</strong> Transfer your data to another service.</li>
+        <li><strong>Objection:</strong> Opt out of direct marketing or certain processing.</li>
+      </ul>
+      <p>To exercise any of these rights, email <a href="#">rites@mythral.com</a> with the subject line "Privacy Invocation". We will respond within 30 days. We may ask for verification of identity before fulfilling your request.</p>
+      <div class="highlight-box">
+        <i class="fa-regular fa-globe"></i> <strong>Cross-border transfers:</strong> MYTHRAL is based in India. If you are visiting from outside India, your data will be transferred to and processed in India. We ensure appropriate safeguards (standard contractual clauses) for international data flows.
+      </div>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-envelope-open-text"></i> 9. Third-Party Links & Embedded Content</h2>
+      <p>Our product stories may include links to artisan profiles or external platforms (Instagram, etc.). Those sites have their own privacy policies, and we are not responsible for their practices. Always review their policies before sharing data.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-pen-fancy"></i> 10. Changes to This Grimoire</h2>
+      <p>We may update this Privacy Policy occasionally to reflect new practices or legal requirements. The "Effective date" at the top indicates the latest revision. If we make material changes, we will notify you via email (if you have an account) or through a notice on our homepage. Your continued use of MYTHRAL after changes constitutes acceptance.</p>
+    </div>
+
+    <div class="privacy-section">
+      <h2><i class="fa-regular fa-comment-dots"></i> 11. Contact the Keeper of Records</h2>
+      <p>For any privacy-related questions, concerns, or data requests, please reach out to our Data Guardian:</p>
+      <p><i class="fa-regular fa-envelope" style="margin-right: 8px; color: var(--mythral-terra);"></i> <strong>Email:</strong> rites@mythral.com<br>
+      <i class="fa-regular fa-location-dot" style="margin-right: 8px; color: var(--mythral-terra);"></i> <strong>Postal:</strong> MYTHRAL Atelier — Privacy Office, 7 Weaver's Lane, Jaipur, 302002, India</p>
+      <p>We aim to acknowledge all privacy inquiries within 3 business days and resolve them within 30 days.</p>
+    </div>
+  </div>
+
+  <!-- back to homepage / emporium navigation -->
+  <div class="back-nav">
+    <a href="#" class="btn-outline"><i class="fa-regular fa-arrow-left"></i> Return to the Emporium</a>
+  </div>
+
+  <!-- footer (consistent brand identity) -->
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="#" class="logo" style="font-size: 1.7rem;">MYTHRAL</a>
+      <p>Objects that whisper legends. Curated for the nomadic spirit.</p>
+      <div class="social-links" style="margin-top: 18px;">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-pinterest"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-flickr"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </footer>
+</div>
+
+<script>
+  // subtle interactive demo: simulate back to shop and console greeting
+  const backBtn = document.querySelector('.btn-outline');
+  if (backBtn) {
+    backBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("🔮 You're being guided back to the MYTHRAL Emporium. (Navigate to the homepage in the full site.)");
+    });
+  }
+  // footer social icons - optional console note
+  console.log("MYTHRAL Privacy Grimoire loaded — your data is respected here.");
+</script>
+</body>
+</html>

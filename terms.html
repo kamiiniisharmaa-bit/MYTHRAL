@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MYTHRAL · Terms of the Emporium</title>
+  <!-- same fonts as homepage: Manrope + Cormorant Garamond -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #faf7f2;
+      color: #1a1a2c;
+      line-height: 1.55;
+    }
+
+    /* identical color variables from MYTHRAL homepage */
+    :root {
+      --mythral-deep: #0f2c2f;
+      --mythral-terra: #c45c4a;
+      --mythral-sand: #e8dfd3;
+      --mythral-gold: #b88b4a;
+      --mythral-card: #ffffff;
+      --mythral-mist: #f2ede5;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* header / navbar (same as homepage, consistent brand) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 2px solid rgba(15, 44, 47, 0.08);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--mythral-deep) 0%, var(--mythral-terra) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      background: none;
+      color: var(--mythral-terra);
+      -webkit-background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-icons i {
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+    }
+
+    .nav-icons i:hover {
+      color: var(--mythral-terra);
+    }
+
+    /* terms hero section */
+    .terms-header {
+      margin: 48px 0 32px 0;
+      text-align: center;
+    }
+
+    .terms-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--mythral-deep);
+      letter-spacing: -0.01em;
+    }
+
+    .terms-header p {
+      color: #5c5c6e;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(15, 44, 47, 0.1);
+      display: inline-block;
+      padding-top: 14px;
+    }
+
+    .last-updated {
+      background: var(--mythral-mist);
+      display: inline-block;
+      padding: 6px 20px;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-top: 20px;
+      color: var(--mythral-terra);
+    }
+
+    /* main terms card style */
+    .terms-card {
+      background: var(--mythral-card);
+      border-radius: 32px;
+      padding: 48px 56px;
+      margin: 32px 0 64px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(15, 44, 47, 0.06);
+    }
+
+    .terms-section {
+      margin-bottom: 40px;
+    }
+
+    .terms-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .terms-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--mythral-deep);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terms-section h2 i {
+      color: var(--mythral-gold);
+      font-size: 1.5rem;
+    }
+
+    .terms-section h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 24px 0 12px 0;
+      color: var(--mythral-terra);
+    }
+
+    .terms-section p {
+      margin-bottom: 16px;
+      color: #2d2d3a;
+      line-height: 1.65;
+    }
+
+    .terms-section ul, .terms-section ol {
+      margin: 12px 0 20px 28px;
+      color: #2d2d3a;
+    }
+
+    .terms-section li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: rgba(196, 92, 74, 0.08);
+      padding: 18px 24px;
+      border-radius: 20px;
+      border-left: 4px solid var(--mythral-terra);
+      margin: 24px 0;
+    }
+
+    .terms-section a {
+      color: var(--mythral-terra);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed var(--mythral-gold);
+    }
+
+    .terms-section a:hover {
+      color: var(--mythral-deep);
+      border-bottom: 1px solid var(--mythral-terra);
+    }
+
+    /* back to shop button */
+    .back-link {
+      text-align: center;
+      margin: 20px 0 60px;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1.8px solid var(--mythral-deep);
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: var(--mythral-deep);
+      color: white;
+      border-color: var(--mythral-deep);
+    }
+
+    /* footer (matching homepage) */
+    .footer {
+      border-top: 1px solid rgba(15, 44, 47, 0.12);
+      padding: 52px 0 36px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col p {
+      color: #5c5c6e;
+      max-width: 260px;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--mythral-deep);
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #5c5c6e;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .social-links i {
+      font-size: 1.25rem;
+      margin-right: 20px;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social-links i:hover {
+      color: var(--mythral-gold);
+    }
+
+    @media (max-width: 750px) {
+      .container {
+        padding: 0 24px;
+      }
+      .terms-card {
+        padding: 32px 24px;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .terms-header h1 {
+        font-size: 2.3rem;
+      }
+      .footer {
+        flex-direction: column;
+        gap: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- consistent header with MYTHRAL branding -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">MYTHRAL<span> .atelier</span></a>
+      <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-bag-shopping"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- terms page title area -->
+  <div class="terms-header">
+    <h1>The Emporium Covenant</h1>
+    <p>Terms of Service · MYTHRAL Atelier</p>
+    <div class="last-updated">
+      <i class="fa-regular fa-calendar-alt" style="margin-right: 6px;"></i> Last amended: June 12, 2026
+    </div>
+  </div>
+
+  <!-- main terms content card -->
+  <div class="terms-card">
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-gem"></i> 1. The Mythral Pact</h2>
+      <p>Welcome to MYTHRAL ("we", "us", "our", or "the Emporium"). By accessing or purchasing from our digital sanctuary (mythral-atelier.com), you enter into a binding agreement with the curiosities you hold dear. These Terms govern your use of our website, products, and all related services — from talismans to textiles. Please read them with the same reverence you would give to a handwritten spell.</p>
+      <div class="highlight">
+        <i class="fa-regular fa-hand-peace" style="margin-right: 10px; color: var(--mythral-terra);"></i> 
+        <strong>By completing a transaction or browsing MYTHRAL, you accept these terms in full.</strong> If you do not agree, we kindly ask you to step away from our threshold.
+      </div>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-receipt"></i> 2. Artifacts & Orders</h2>
+      <h3>2.1 Product Descriptions</h3>
+      <p>Each object in our archive — from the <strong>Oracle's Tear</strong> to the <strong>Driftwood Loom Throw</strong> — is described with care. However, slight variations in color, texture, or patina are signatures of handcraftsmanship and should be celebrated, not considered defects. We strive for accuracy but do not warrant that images or descriptions are error-free.</p>
+      <h3>2.2 Pricing & Availability</h3>
+      <p>All prices are listed in USD and do not include applicable taxes or shipping fees (detailed at checkout). Due to the limited nature of our relics, an item may become unavailable after you place an order. In such cases, we will notify you within 3 business days and offer a full refund or exchange.</p>
+      <h3>2.3 Order Acceptance</h3>
+      <p>We reserve the right to refuse or cancel any order for reasons including but not limited to: stock unavailability, payment discrepancies, or suspicion of fraudulent activity. If your order is cancelled, you will receive a prompt refund.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-truck-fast"></i> 3. Shipping & Sacred Returns</h2>
+      <p>We ship worldwide from our atelier. Estimated delivery times are provided at checkout but are not guaranteed. Risk of loss passes to you upon delivery to the carrier.</p>
+      <h3>3.1 Return Window</h3>
+      <p>You may request a return within <strong>14 days</strong> of receiving your artifact. Items must be unused, in original packaging, and with all tags attached. Ritual tools, apothecary elixirs, and final-sale objects are not eligible for return (clearly marked on product page).</p>
+      <h3>3.2 Refunds & Exchanges</h3>
+      <p>Once we receive and inspect the returned item, we will issue a refund to your original payment method within 7–10 business days. Exchanges are subject to stock availability. Return shipping costs are borne by the buyer unless the item arrived damaged or defective.</p>
+      <div class="highlight">
+        <i class="fa-regular fa-moon"></i> <strong>Damaged or lost relics?</strong> Contact our coven at <a href="#">rites@mythral.com</a> within 48 hours of delivery with photos, and we will dispatch a replacement or issue a full credit.
+      </div>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-copyright"></i> 4. Intellectual Property</h2>
+      <p>All content on this site — including product photography, illustrations, text, logos, and the distinctive MYTHRAL trade dress — is owned by MYTHRAL Atelier or its artisans. You may not reproduce, distribute, or exploit any material without our prior written consent. However, you are welcome to share a product page via social channels as long as you credit the Emporium.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-shield"></i> 5. User Accounts & Conduct</h2>
+      <p>To place an order or join our newsletter circle, you may create an account. You are responsible for safeguarding your credentials. You agree not to:</p>
+      <ul>
+        <li>Use the site for any unlawful purpose or to harass others.</li>
+        <li>Interfere with the security or performance of MYTHRAL.</li>
+        <li>Copy or scrape product data for commercial use.</li>
+      </ul>
+      <p>We reserve the right to suspend accounts that violate these guidelines.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-clock"></i> 6. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, MYTHRAL shall not be liable for any indirect, incidental, or consequential damages arising from the use of our products or website. Our total liability for any claim related to your purchase shall not exceed the amount you paid for that artifact.</p>
+      <p><strong>Note:</strong> Some jurisdictions do not allow the exclusion of certain warranties, so this limitation may not apply to you fully. It does not affect your statutory rights as a consumer.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-pen-to-square"></i> 7. Amendments to the Covenant</h2>
+      <p>We may update these Terms from time to time to reflect changes in our practices or legal requirements. The latest version will always be posted on this page with an updated "last amended" date. Material changes will be notified via email or a banner on our homepage. Continued use of MYTHRAL after changes constitutes acceptance.</p>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-envelope"></i> 8. Contact the Curator</h2>
+      <p>If you have any questions about these Terms, a specific artifact, or your order, please reach out:</p>
+      <p><i class="fa-regular fa-envelope" style="margin-right: 8px; color: var(--mythral-terra);"></i> <strong>Email:</strong> rites@mythral.com<br>
+      <i class="fa-regular fa-location-dot" style="margin-right: 8px; color: var(--mythral-terra);"></i> <strong>Postal correspondence:</strong> MYTHRAL Atelier, 7 Weaver's Lane, Jaipur, 302002, India (by appointment only)</p>
+      <div class="highlight">
+        <i class="fa-regular fa-comment"></i> Our customer guardians reply within 2 business days — except during lunar holidays.
+      </div>
+    </div>
+
+    <div class="terms-section">
+      <h2><i class="fa-regular fa-scale-balanced"></i> 9. Governing Law</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of India, without regard to conflict of law principles. Any disputes arising from your use of MYTHRAL shall be resolved exclusively in the courts of Jaipur, India.</p>
+    </div>
+  </div>
+
+  <!-- back to shop button -->
+  <div class="back-link">
+    <a href="#" class="btn-outline"><i class="fa-regular fa-arrow-left"></i> Return to the Emporium</a>
+  </div>
+
+  <!-- footer (identical to homepage for brand continuity) -->
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="#" class="logo" style="font-size: 1.7rem;">MYTHRAL</a>
+      <p>Objects that whisper legends. Curated for the nomadic spirit.</p>
+      <div class="social-links" style="margin-top: 18px;">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-pinterest"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-flickr"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </footer>
+</div>
+
+<!-- small interactive footer year + dummy alert for demo consistency -->
+<script>
+  // just a tiny interactive reminder for demo (consistent with homepage style)
+  const backButton = document.querySelector('.btn-outline');
+  if(backButton) {
+    backButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("✨ The Emporium awaits. (In a full experience, this link would lead to the MYTHRAL shop homepage.)");
+    });
+  }
+  // add subtle hover behavior to footer social icons (already fine)
+  console.log("MYTHRAL Terms of Service — unique brand covenant loaded.");
+</script>
+</body>
+</html>

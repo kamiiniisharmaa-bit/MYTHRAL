@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>MYTHRAL | The Emporium of Curiosities</title>
+  <!-- Google Fonts: distinct serif + modern sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: #faf7f2;
+      color: #1a1a2c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* MYTHRAL unique color palette: deep teal + terracotta + sand */
+    :root {
+      --mythral-deep: #0f2c2f;
+      --mythral-terra: #c45c4a;
+      --mythral-sand: #e8dfd3;
+      --mythral-gold: #b88b4a;
+      --mythral-card: #ffffff;
+      --mythral-mist: #f2ede5;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 36px;
+    }
+
+    /* navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-bottom: 2px solid rgba(15, 44, 47, 0.08);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--mythral-deep);
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--mythral-deep) 0%, var(--mythral-terra) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .logo span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      background: none;
+      color: var(--mythral-terra);
+      -webkit-background-clip: unset;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .nav-icons {
+      display: flex;
+      gap: 24px;
+    }
+
+    .nav-icons i {
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+    }
+
+    .nav-icons i:hover {
+      color: var(--mythral-terra);
+    }
+
+    /* hero section */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 64px 0 80px;
+    }
+
+    .hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.7rem;
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--mythral-deep);
+      margin-bottom: 24px;
+    }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      color: #4a4a5a;
+      margin-bottom: 36px;
+      max-width: 88%;
+    }
+
+    .btn-primary {
+      background: var(--mythral-deep);
+      color: white;
+      border: none;
+      padding: 14px 38px;
+      font-weight: 600;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .btn-primary:hover {
+      background: var(--mythral-terra);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 22px -10px rgba(196, 92, 74, 0.35);
+    }
+
+    .hero-image {
+      background: var(--mythral-sand);
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 28px 36px -16px rgba(0, 0, 0, 0.12);
+      aspect-ratio: 4 / 3;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease;
+    }
+
+    .hero-image:hover img {
+      transform: scale(1.02);
+    }
+
+    /* section title */
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin: 48px 0 32px 0;
+      color: var(--mythral-deep);
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 70px;
+      height: 3px;
+      background: var(--mythral-gold);
+    }
+
+    /* products grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 36px;
+      margin: 20px 0 64px;
+    }
+
+    .product-card {
+      background: var(--mythral-card);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.02);
+      border: 1px solid rgba(15, 44, 47, 0.06);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 28px 38px -12px rgba(15, 44, 47, 0.18);
+      border-color: var(--mythral-gold);
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #e7dfd3;
+      overflow: hidden;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.04);
+    }
+
+    .product-info {
+      padding: 20px 20px 24px;
+    }
+
+    .product-category {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--mythral-terra);
+      font-weight: 600;
+    }
+
+    .product-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin: 10px 0 6px;
+      color: var(--mythral-deep);
+    }
+
+    .product-price {
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--mythral-terra);
+      margin: 10px 0 14px;
+    }
+
+    .product-price small {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: #8a7a6a;
+    }
+
+    .add-to-cart {
+      background: transparent;
+      border: 1.8px solid var(--mythral-deep);
+      border-radius: 50px;
+      padding: 10px 0;
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      color: var(--mythral-deep);
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .add-to-cart:hover {
+      background: var(--mythral-deep);
+      color: white;
+      border-color: var(--mythral-deep);
+    }
+
+    /* mythral story / manifesto */
+    .manifesto {
+      background: var(--mythral-mist);
+      border-radius: 40px;
+      padding: 56px 48px;
+      margin: 60px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .manifesto-text {
+      flex: 1.3;
+    }
+
+    .manifesto-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: var(--mythral-deep);
+      margin-bottom: 20px;
+    }
+
+    .manifesto-text p {
+      color: #3d3d4a;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .manifesto-badge {
+      display: inline-block;
+      background: var(--mythral-gold);
+      padding: 5px 16px;
+      border-radius: 60px;
+      font-weight: 500;
+      font-size: 0.75rem;
+      color: #1e1e2a;
+      margin-bottom: 18px;
+    }
+
+    .manifesto-image {
+      flex: 0.9;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 24px 32px -12px rgba(0, 0, 0, 0.12);
+    }
+
+    .manifesto-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* newsletter */
+    .newsletter-section {
+      background: linear-gradient(125deg, #e3d9cd 0%, #d6cbbc 100%);
+      padding: 52px 48px;
+      border-radius: 40px;
+      text-align: center;
+      margin: 40px 0 64px;
+    }
+
+    .newsletter-section h4 {
+      font-size: 1.9rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--mythral-deep);
+    }
+
+    .newsletter-section p {
+      margin: 14px 0 30px;
+      color: #2d2d3a;
+    }
+
+    .news-form {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .news-form input {
+      padding: 14px 24px;
+      border-radius: 60px;
+      border: none;
+      width: 300px;
+      font-size: 0.95rem;
+      background: white;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .news-form button {
+      background: var(--mythral-deep);
+      border: none;
+      padding: 14px 34px;
+      border-radius: 60px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .news-form button:hover {
+      background: var(--mythral-terra);
+    }
+
+    /* footer */
+    .footer {
+      border-top: 1px solid rgba(15, 44, 47, 0.12);
+      padding: 52px 0 36px;
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col p {
+      color: #5c5c6e;
+      max-width: 260px;
+      margin-top: 14px;
+      font-size: 0.9rem;
+    }
+
+    .footer-col h5 {
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--mythral-deep);
+      font-size: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 12px;
+    }
+
+    .footer-col a {
+      text-decoration: none;
+      color: #5c5c6e;
+      transition: 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .footer-col a:hover {
+      color: var(--mythral-terra);
+    }
+
+    .social-links i {
+      font-size: 1.25rem;
+      margin-right: 20px;
+      color: var(--mythral-deep);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    .social-links i:hover {
+      color: var(--mythral-gold);
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+      }
+      .hero-content p {
+        max-width: 100%;
+      }
+      .container {
+        padding: 0 24px;
+      }
+      .manifesto {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 28px;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .section-title:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .section-title {
+        text-align: center;
+        display: block;
+      }
+    }
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NTV0NLN2X5"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NTV0NLN2X5');
+</script>
+</head>
+<body>
+
+<div class="container">
+  <!-- header with unique brand name MYTHRAL -->
+  <header>
+    <div class="navbar">
+      <a href="#" class="logo">MYTHRAL<span> .atelier</span></a>
+      <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-regular fa-circle-user"></i>
+        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-bag-shopping"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- hero section with unique product imagery -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Artifacts for the wanderers & dreamers.</h1>
+      <p>MYTHRAL brings you hand-selected curiosities — from sculptural ceramics to botanical apothecary. Each piece carries a forgotten legend.</p>
+      <a href="#" class="btn-primary">Discover trove <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+    <div class="hero-image">
+      <img src="https://picsum.photos/id/42/900/650" alt="MYTHRAL hero artisan ceramic collection">
+    </div>
+  </section>
+
+  <!-- featured collection: unique names and images -->
+  <div>
+    <h2 class="section-title">✦ Charmed collection</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/15/400/400" alt="Oracle pendant">
+        </div>
+        <div class="product-info">
+          <div class="product-category">TALISMAN JEWELRY</div>
+          <div class="product-title">Oracle's Tear</div>
+          <div class="product-price">$212 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/43/400/400" alt="Woven ritual shawl">
+        </div>
+        <div class="product-info">
+          <div class="product-category">WEAVINGS</div>
+          <div class="product-title">Nocturne Shawl</div>
+          <div class="product-price">$328 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/78/400/400" alt="Volcanic stone incense burner">
+        </div>
+        <div class="product-info">
+          <div class="product-category">RITUAL OBJECTS</div>
+          <div class="product-title">Emberstone Burner</div>
+          <div class="product-price">$187 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/88/400/400" alt="Handblown glass elixir">
+        </div>
+        <div class="product-info">
+          <div class="product-category">APOTHECARY</div>
+          <div class="product-title">Moonlit Elixir</div>
+          <div class="product-price">$79 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- unique brand story / manifesto section -->
+  <div class="manifesto">
+    <div class="manifesto-text">
+      <span class="manifesto-badge">✦ Since 2019 ✦</span>
+      <h3>The mythos behind the objects</h3>
+      <p>MYTHRAL was born from a reverence for forgotten crafts, slow rituals, and the beauty of the imperfect. We work directly with nomadic artisans, ceramicists from remote villages, and textile keepers who weave stories into every thread.</p>
+      <p>Our name echoes the old word “mythral” — a legendary alloy said to glow under moonlight. We believe that well-made objects carry that same luminance.</p>
+      <a href="#" class="btn-primary" style="background: var(--mythral-gold); color: var(--mythral-deep);">Read our grimoire →</a>
+    </div>
+    <div class="manifesto-image">
+      <img src="https://picsum.photos/id/169/550/450" alt="MYTHRAL artisan studio clay workshop">
+    </div>
+  </div>
+
+  <!-- second collection: unique names only -->
+  <div>
+    <h2 class="section-title">⌇ Reliquary edit</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/100/400/400" alt="Sculpted vessel">
+        </div>
+        <div class="product-info">
+          <div class="product-category">SCULPTURAL</div>
+          <div class="product-title">Whispering Urn</div>
+          <div class="product-price">$445 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/127/400/400" alt="Handwoven textile">
+        </div>
+        <div class="product-info">
+          <div class="product-category">TEXTILE ART</div>
+          <div class="product-title">Driftwood Loom Throw</div>
+          <div class="product-price">$529 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/41/400/400" alt="Crystal diffuser">
+        </div>
+        <div class="product-info">
+          <div class="product-category">AURA CARE</div>
+          <div class="product-title">Selenite Diffuser</div>
+          <div class="product-price">$114 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img">
+          <img src="https://picsum.photos/id/47/400/400" alt="Leather bound journal">
+        </div>
+        <div class="product-info">
+          <div class="product-category">STATIONERY</div>
+          <div class="product-title">Obsidian Folio</div>
+          <div class="product-price">$96 <small>USD</small></div>
+          <button class="add-to-cart"><i class="fa-regular fa-plus"></i> Add to cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- newsletter subscription -->
+  <div class="newsletter-section">
+    <h4>✦ Subscribe to the archive</h4>
+    <p>Receive mythical dispatches, early access to relic drops, and artisanal stories.</p>
+    <div class="news-form">
+      <input type="email" placeholder="your etherial address">
+      <button>Join the circle →</button>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer class="footer">
+    <div class="footer-col">
+      <a href="#" class="logo" style="font-size: 1.7rem;">MYTHRAL</a>
+      <p>Objects that whisper legends. Curated for the nomadic spirit.</p>
+      <div class="social-links" style="margin-top: 18px;">
+        <i class="fa-brands fa-instagram"></i>
+        <i class="fa-brands fa-pinterest"></i>
+        <i class="fa-brands fa-x-twitter"></i>
+        <i class="fa-brands fa-flickr"></i>
+      </div>
+    </div>
+    <div class="footer-col">
+      
+    </div>
+  </footer>
+</div>
+
+<script>
+  // interactive add-to-cart feedback + unique name mention
+  const cartButtons = document.querySelectorAll('.add-to-cart');
+  cartButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const card = btn.closest('.product-card');
+      const productName = card.querySelector('.product-title').innerText;
+      alert(`✨ “${productName}” added to your MYTHRAL cart.`);
+    });
+  });
+
+  const newsletterBtn = document.querySelector('.news-form button');
+  if (newsletterBtn) {
+    newsletterBtn.addEventListener('click', () => {
+      const emailField = document.querySelector('.news-form input');
+      if (emailField.value.includes('@') && emailField.value.includes('.')) {
+        alert('🌙 Welcome, traveler. A mythical letter will arrive soon.');
+        emailField.value = '';
+      } else {
+        alert('Please enter a valid email to receive the archive.');
+      }
+    });
+  }
+</script>
+</body>
+</html>
